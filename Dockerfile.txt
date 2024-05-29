@@ -1,0 +1,26 @@
+FROM python:3
+LABEL version = '1'
+
+RUN apt update && \
+apt install -y wget git nano build-essential && \
+apt clean
+RUN wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz && \
+tar -C /usr/local -xzf go1.21.1.linux-amd64.tar.gz && \
+rm go1.21.1.linux-amd64.tar.gz
+
+ENV PATH="/usr/local/go/bin:${PATH}"
+ENV GOPATH="/root/go"
+
+COPY requirements.txt /home/requirements.txt
+RUN pip3 install -r /home/requirements.txt
+
+RUN go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
+ENV PATH="${GOPATH}/bin:${PATH}"
+WORKDIR /home
+
+COPY main.py /home/main.py  
+COPY smoke_tests.py /home/smoke_tests.py  
+COPY ib_tests.py /home/ib_tests.py 
+
+
+ENTRYPOINT ["pytest", "-s", "-v", "ib_tests.py"]
