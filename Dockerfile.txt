@@ -18,9 +18,7 @@ RUN go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
 ENV PATH="${GOPATH}/bin:${PATH}"
 WORKDIR /home
 
-COPY main.py /home/main.py  
-COPY smoke_tests.py /home/smoke_tests.py  
-COPY ib_tests.py /home/ib_tests.py 
+COPY main.py smoke_tests.py ib_tests.py /home/
 
 
 ENTRYPOINT ["pytest", "-s", "-v", "ib_tests.py"]
