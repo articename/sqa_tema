@@ -1,4 +1,6 @@
 # sqa_tema
+This repository contains the files to run the practice.
+=====================
 File name                  | File content
 ---------------------------|----------------------
 Dockerfile.txt             | This dockerfile is needed to create the image. The created image contains all necessary dependencies and components for successful launching of information security tests (ib_tests.py).
