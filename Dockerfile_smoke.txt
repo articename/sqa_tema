@@ -1,8 +1,7 @@
 FROM python:3
 LABEL version = '1'
-RUN apt update
 COPY requirements.txt /home/requirements.txt
-RUN pip install -r /home/requirements.txt
+RUN apt update && pip install -r /home/requirements.txt
 COPY main.py /home/main.py  
 COPY smoke_tests.py /home/smoke_tests.py
 WORKDIR /home
