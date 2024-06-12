@@ -13,7 +13,7 @@ class AbstractApiCall(abc.ABC):
         pass
 
 
-class AbstractCash(abc.ABC):
+class AbstractCache(abc.ABC):
     def __init__(self):
         pass
 
@@ -64,8 +64,8 @@ class ApiCall(AbstractApiCall):
                 return req
 
 
-class Cash(AbstractCash):
-    def __init__(self, path='cash.json'):
+class Cache(AbstractCache):
+    def __init__(self, path='Cache.json'):
         super().__init__()
         self.path = path
 
@@ -97,17 +97,17 @@ class Client:
     def __init__(self, url, api_token):
         self.url = url
         self.api_token = api_token
-        self.cash = Cash()
+        self.Cache = Cache()
         self.call = ApiCall(self.url, self.api_token)
 
     def ultimate_request(self, headers_for_request, parameters, endpoint='',
                          method='get', normal_diff = 20):
-        data_cash = self.cash.check_get(self.url, parameters, endpoint)
-        if (data_cash is None) or (int(round(time.time()))-data_cash[2]>normal_diff):
+        data_Cache = self.Cache.check_get(self.url, parameters, endpoint)
+        if (data_Cache is None) or (int(round(time.time()))-data_Cache[2]>normal_diff):
             answer = self.call.request(headers_for_request, parameters, endpoint, method)
-            self.cash.accumulate(self.url, parameters, [answer.text, answer.status_code, int(round(time.time()))], endpoint)
+            self.Cache.accumulate(self.url, parameters, [answer.text, answer.status_code, int(round(time.time()))], endpoint)
             print('111111')
             return [answer.text, answer.status_code]
         else:
             print('222222')
-            return [data_cash[0], data_cash[1]]
+            return [data_Cache[0], data_Cache[1]]
