@@ -1,8 +1,8 @@
 import subprocess
 import pytest
 
-ssl_command = "nuclei -u https://api.apilayer.com/exchangerates_data/latest -tags ssl -no-color > /home/tls_info.txt"
-sql_command = "nuclei -u https://api.apilayer.com/exchangerates_data/latest -tags sql -no-color > /home/sql_info.txt"
+ssl_command = "nuclei -u https://api.apilayer.com/exchangerates_data/latest -tags ssl -H "Dftk6hUYPZSqm6zabMAV6qaHmhefvr7d" -no-color > /home/tls_info.txt"
+sql_command = "nuclei -u https://api.apilayer.com/exchangerates_data/latest -tags sql -H "Dftk6hUYPZSqm6zabMAV6qaHmhefvr7d" -no-color > /home/sql_info.txt"
 
 subprocess.run(ssl_command, shell=True, capture_output=True, text=True)
 subprocess.run(sql_command, shell=True, capture_output=True, text=True)
