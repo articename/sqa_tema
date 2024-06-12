@@ -9,6 +9,7 @@ ib_tests.py                | This file containing two tests. The first one check
 smoke_tests.py             | This file containing the tests. Checking the work of API call classes written in the file (main.py). The tests check the fact of successful communication with api, as well as the work of the cache.
 main.py                    | This file contains classes of api (https://api.apilayer.com/exchangerates_data/) call, cache storing answers to the request for a specified time, as well as a client class combining the logic of the two previous classes.
 requirements.txt           | This file contains dependencies required for classes (main.py) and smoke tests (smoke_tests.py) to work.
+req1.txt                   | This file contains dependencies required for information security (ib_tests.py) to work.
 work_of_ib_tests.png       | This picture shows how the security tests work.
 work_of_smoke_tests1.png   | This picture shows how smoke tests work, part 1.
 work_of_smoke_tests1.png   | This picture shows how smoke tests work, part 2.
