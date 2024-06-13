@@ -25,7 +25,7 @@ class AbstractCache(abc.ABC):
     def check_get(self):
         pass
 
-
+# Function to create a full url
 def get_full_url(url, endpoint, parameters):
     count_of_param = len(parameters)
     if count_of_param == 0:
@@ -42,7 +42,7 @@ def get_full_url(url, endpoint, parameters):
     full_url = url + endpoint + param_list
     return full_url
 
-
+# Api call class
 class ApiCall(AbstractApiCall):
 
     def __init__(self, url, api_token):
@@ -63,7 +63,7 @@ class ApiCall(AbstractApiCall):
                 req = requests.get(url, headers=headers)
                 return req
 
-
+# Cache class
 class Cache(AbstractCache):
     def __init__(self, path='Cache.json'):
         super().__init__()
@@ -92,7 +92,7 @@ class Cache(AbstractCache):
         received_data = data.get(key)
         return received_data
 
-
+# Class combining the logic of query and cache classes
 class Client:
     def __init__(self, url, api_token):
         self.url = url
